@@ -1,0 +1,35 @@
+{
+  "name": "fluent-action-types",
+  "version": "0.0.1",
+  "description": "Declarative API for creating flux-style action type enums",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iirvine/fluent-action-types.git"
+  },
+  "keywords": [
+    "flux"
+  ],
+  "author": "Ian Irvine",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iirvine/fluent-action-types/issues"
+  },
+  "homepage": "https://github.com/iirvine/fluent-action-types",
+  "devDependencies": {
+    "karma": "^0.12.28",
+    "karma-browserify": "^1.0.1"
+  },
+  "dependencies": {
+    "es6-map": "^0.1.1",
+    "es6-set": "^0.1.1",
+    "invariant": "^1.0.2",
+    "object.assign": "^1.1.1"
+  }
+}
