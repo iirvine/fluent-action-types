@@ -3,7 +3,39 @@ fluent-action-types
 
 Declarative API for building namespaced "action type" enumerations for flux applications.
 
-[Flux](https://github.com/facebook/flux) applications use a central dispatcher to pump application events and new data to datastores. These actions are simply objects that have a 'type' property and some new data. 
+```js
+var ActionTypes = require('flux-action-types');
+
+var UserActionTypes = ActionTypes('users', function() {
+	this.actions(
+		'FETCH_USER',
+		'FETCH_ALL_USERS',
+	);
+
+	this.namespace('server', function() {
+		this.actions(
+			'RECEIVE_USER',
+			'RECEIVE_ALL_USERS'
+		);
+	});
+});
+
+/*
+produces object:
+	{
+		FETCH_USER: 'users:FETCH_USER',
+		FETCH_ALL_USERS: 'users:FETCH_ALL_USERS',
+		server: {
+			RECEIVE_USER: 'users:server:RECEIVE_USER'
+			RECEIVE_ALL_USERS: 'users:server:RECEIVE_ALL_USERS'
+		}
+	}
+*/
+```
+
+==Why?==
+
+[Flux](https://github.com/facebook/flux) applications use a central dispatcher to pump application events and new data to datastores. Flux calls these events "actions" - they are simply objects that have a 'type' property and some new data. 
 
 ```js
 var AppConstants = require('./AppConstants');
