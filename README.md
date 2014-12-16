@@ -33,7 +33,7 @@ produces object:
 */
 ```
 
-==Why?==
+##Why?
 
 [Flux](https://github.com/facebook/flux) applications use a central dispatcher to pump application events and new data to datastores. Flux calls these events "actions" - they are simply objects that have a 'type' property and some new data. 
 
