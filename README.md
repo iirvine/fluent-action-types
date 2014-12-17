@@ -128,3 +128,7 @@ returns object:
 	}
 */
 ```
+
+##API
+
+*ActionTypes(name, callback)*: the main export of this package is a function you can call with a namespace string and a callback function. Inside the callback, you can call `this.actions(...actionStrings)` to declare a set of action types in the current namespace. All action strings within the same namespace must be unique.
