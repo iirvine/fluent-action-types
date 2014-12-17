@@ -131,12 +131,14 @@ returns object:
 
 ##API
 
-*ActionTypes(name, callback)*: 
+###`ActionTypes(name, callback)`: 
 
 The main export of this package is a function you can call with a namespace string and a callback function. 
 
-*this.actions(...actionStrings)*:
+###`this.actions(...actionStrings)`:
+
 Inside the callback to `ActionTypes`, you can call `this.actions(...actions)` to declare a set of action types in the current namespace. All action strings within the same namespace must be unique.
 
-*this.namespace(name, callback)*:
-Creates a nested namespace within an `ActionTypes` callback.
+###`this.namespace(name, callback)`:
+
+Creates a nested namespace within an `ActionTypes` callback. Namespace identifiers at the same hierarchy level must be unique.
