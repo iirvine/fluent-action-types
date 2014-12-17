@@ -4,13 +4,13 @@ var ActionTypes = require('../index');
 describe('ActionNamespace', () => {
   var TypeMap;
   beforeEach(() => {
-    TypeMap = new ActionNamespace('MyApp');
+    TypeMap = ActionNamespace('MyApp');
   })
 
   it('can add actions', () => {
     TypeMap.putAction('test');
     
-    expect(TypeMap.build()).to.deep.equal({
+    expect(TypeMap.toJS()).to.deep.equal({
       __namespace__: 'MyApp',
       test: 'MyApp:test'
     });
@@ -68,7 +68,7 @@ describe('ActionNamespace', () => {
       })
     );
 
-    expect(TypeMap.build()).to.deep.eql({
+    expect(TypeMap.toJS()).to.deep.eql({
       __namespace__: 'MyApp',
       ns: {
         __namespace__: 'ns',
@@ -100,7 +100,7 @@ describe('ActionNamespace', () => {
       })
     );
 
-    expect(TypeMap.build()).to.deep.eql({
+    expect(TypeMap.toJS()).to.deep.eql({
       __namespace__: 'MyApp',
       nsOne: {
         __namespace__: 'nsOne',
