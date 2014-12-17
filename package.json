@@ -23,8 +23,14 @@
   },
   "homepage": "https://github.com/iirvine/fluent-action-types",
   "devDependencies": {
+    "6to5ify": "^2.0.0",
+    "chai": "^1.10.0",
     "karma": "^0.12.28",
-    "karma-browserify": "^1.0.1"
+    "karma-browserify": "^1.0.1",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-mocha": "^0.1.10",
+    "mocha": "^2.0.1"
   },
   "dependencies": {
     "es6-map": "^0.1.1",

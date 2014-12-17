@@ -1,7 +1,7 @@
 var DSL = require('./lib/DSL');
 
 module.exports = function ActionTypes(namespace, fn) {
-  return new DSL(namespace, fn).generate();
+  return DSL(namespace, fn);
 }
 
 module.exports.ActionNamespace = require('./lib/ActionNamespace');

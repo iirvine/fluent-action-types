@@ -53,30 +53,29 @@ Managing the set of possible action types is fairly simple for basic application
 
 *constants/AppConstants.js*
 ```js
-var keyMirror = require('keymirror');
-
 module.exports = {
 	ActionTypes: {
-		users: keyMirror({
-			'SOME_ACTION',
-			'SOME_OTHER_ACTION',
-			'YET_ANOTHER_ACTION'
-		}),
+		users: {
+			'SOME_ACTION': 'SOME_ACTION'
+			'SOME_OTHER_ACTION': 'SOME_OTHER_ACTION'
+			'YET_ANOTHER_ACTION': 'YET_ANOTHER_ACTION'
+		},
 
-		api: keyMirror({
-			'SOME_API_ACTION',
-			'ANOTHER_API_ACTION'
-		})
+		api: {
+			'SOME_API_ACTION': 'SOME_API_ACTION'
+			'ANOTHER_API_ACTION': 'ANOTHER_API_ACTION'
+		}
 	}
 }
 ```
 
-Larger apps might want for something a little more robust. This package provides a simple DSL to build dictionaries of namespaced strings representing different action types. 
+Larger apps might want for something a little more robust. This package provides a simple DSL to build dictionaries of namespaced strings to represent different action types in your application.
 
 These objects can be passed around your app and safely merged together, since the datastructures used behind the scenes guard against collisions. This allows you to split that single application wide constants file across module boundaries, and then merge each module's ActionTypes together into a single datastructure, without having to worry about different modules clobbering each other's action types or namespaces:
 
-*App/TypeMap.js*
+*app/TypeMap.js*
 ```js
+//A centralized, singleton namespace representing all of your application's action types
 var {ActionNamespace} = require('fluent-action-types');
 
 module.exports = new ActionNamespace('MyApp');
