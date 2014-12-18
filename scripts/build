@@ -1,0 +1,6 @@
+#!/bin/sh
+mkdir -p dist
+node_modules/.bin/browserify index.js -t 6to5ify -s FluentActionTypes > dist/fluent-action-types.js
+node_modules/.bin/uglifyjs dist/fluent-action-types.js --compress > dist/fluent-action-types.min.js
+echo "gzipped, global build is:"
+echo "`gzip -c dist/fluent-action-types.min.js | wc -c` bytes"

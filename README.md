@@ -167,16 +167,16 @@ Creates a nested namespace within an `ActionTypes` callback. Namespace identifie
 
 ###`ActionNamespace({name})`
 
-The datastructure behind the scenes. An ActionNamespace represents a set of unique action types and can optionally include child namespaces. It is immutable, meaning that operations that would alter the namespace return a new datastructure representing the new state.
+An ActionNamespace represents a set of unique action types, and can optionally include child namespaces. It is immutable, meaning that operations that would alter the namespace return a new datastructure representing the new state.
 
 ###`Namespace#addAction(name)`
 
-Adds an action of type `name` to the namespace. Returns a new `ActionNamespace`;
+Adds an action of type `name` to the namespace. Returns a new `ActionNamespace`.
 
 ###`Namespace#addNamespace(namespace)`
 
 Adds a namespace as a child of this namespace, if the parent namespace does not already contain a child of the same name. Returns a new `ActionNamespace`.
 
-###`Namespace.build()`
+###`Namespace#build()`
 
 Serializes the namespace to a JavaScript object.

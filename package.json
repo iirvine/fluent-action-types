@@ -1,13 +1,14 @@
 {
   "name": "fluent-action-types",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Declarative API for creating flux-style action type enums",
-  "main": "index.js",
+  "main": "lib/index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "./node_modules/.bin/6to5 src --out-dir lib"
   },
   "repository": {
     "type": "git",
@@ -23,18 +24,20 @@
   },
   "homepage": "https://github.com/iirvine/fluent-action-types",
   "devDependencies": {
+    "6to5": "^1.15.0",
     "6to5ify": "^2.0.0",
+    "browserify": "^7.0.2",
     "chai": "^1.10.0",
     "karma": "^0.12.28",
     "karma-browserify": "^1.0.1",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.7",
     "karma-mocha": "^0.1.10",
-    "mocha": "^2.0.1"
+    "mocha": "^2.0.1",
+    "rf-release": "^0.4.0",
+    "uglify-js": "^2.4.16"
   },
   "dependencies": {
-    "es6-map": "^0.1.1",
-    "es6-set": "^0.1.1",
     "immutable": "^3.4.0",
     "invariant": "^1.0.2",
     "object.assign": "^1.1.1"
