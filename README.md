@@ -18,7 +18,7 @@ var UserActionTypes = ActionTypes('users', function() {
 			'RECEIVE_ALL_USERS'
 		);
 	});
-});
+}).build();
 ```
 
 This produces an object that looks like this:
@@ -84,9 +84,9 @@ module.exports = new ActionNamespace('MyApp');
 *users/ActionTypes.js*
 ```js
 var ActionTypes = require('fluent-action-types');
-var TypeMap = require('../app/TypeMap')
+var App = require('../app')
 
-module.exports = TypeMap.putNamespace(
+module.exports = App.addActions(
 	ActionTypes('users', function() {
 		this.actions(
 			'SOME_ACTION',
@@ -95,23 +95,14 @@ module.exports = TypeMap.putNamespace(
 		);
 	})
 );
-
-/*
-returns object:
-	{
-		SOME_ACTION: 'MyApp:users:SOME_ACTION',
-		SOME_OTHER_ACTION: 'MyApp:users:SOME_OTHER_ACTION'
-	}
-*/
-
 ```
 
 *api/ActionTypes.js*
 ```js
 var ActionTypes = require('fluent-action-types');
-var TypeMap = require('../app/TypeMap');
+var App = require('../app');
 
-module.exports = TypeMap.putNamespace(
+module.exports = App.addActions(
 	ActionTypes('api', function() {
 		this.actions(
 			'SOME_ACTION',
@@ -119,14 +110,6 @@ module.exports = TypeMap.putNamespace(
 		);
 	})
 );
-
-/*
-returns object:
-	{
-		SOME_ACTION: 'MyApp:api:SOME_ACTION',
-		SOME_OTHER_ACTION: 'MyApp:api:SOME_OTHER_ACTION'
-	}
-*/
 ```
 
 ##API

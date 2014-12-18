@@ -6,30 +6,29 @@ describe('ActionTypes', () => {
       this.actions('one', 'two');
     });
 
-    expect(MyActionTypes).to.deep.equal({
-      __namespace__: 'test',
-      one: 'test:one',
-      two: 'test:two'
+    expect(MyActionTypes.build())
+      .to.deep.equal({
+        one: 'test:one',
+        two: 'test:two'
     });
   })
 
   it('builds namespaced objects', () => {
     var MyActionTypes = ActionTypes('test', function() {
-      this.actions('one')
+      this.actions('ACTION')
       this.namespace('ns', function() {
-        this.actions('two');
+        this.actions('OTHER_ACTION');
       })
     });
 
-    expect(MyActionTypes).to.deep.equal({
-      __namespace__: 'test',
-      one: 'test:one',
-      ns: {
-        __namespace__: 'ns',
-        two: 'test:ns:two'
-      }
+    expect(MyActionTypes.build())
+      .to.deep.equal({
+        ACTION: 'test:ACTION',
+        ns: {
+          OTHER_ACTION: 'test:ns:OTHER_ACTION'
+        }
+      });
     });
-  });
 
   it('throws on action name collisions', () => {
     expect(function() {
