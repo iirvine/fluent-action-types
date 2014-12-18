@@ -12,33 +12,9 @@ describe('ActionNamespace', () => {
     
     expect(Namespace.build())
       .to.deep.equal({
-        test: 'MyApp:test'
+        test: 'test'
       });
   })
-
-  it('throws on action name collisions', () => {
-    Namespace = Namespace.addAction('action');
-    expect(function() {
-      Namespace.addAction('action')
-    }).to.throw(Error);
-  })
-
-  // it('can add namespace hashes', () => {
-  //   var ns = ActionTypes.putNamespace({
-  //     test: 'ns:test'
-  //   });
-
-  //   expect(ns.build()).to.deep.eql({
-  //     test: 'MyApp:ns:test'
-  //   });
-  // })
-
-  // it('throws on namespace collisions', () => {
-  //   ActionTypes = ActionTypes.putNamespace({action: 'some_action'}, 'ns');
-  //   expect(function() {
-  //     TypeMap.putNamespace({action: 'some_other_action'}, 'ns');
-  //   }).to.throw(Error)
-  // })
 
   it('works with ActionTypes', () => {
     Namespace = Namespace.addNamespace(
@@ -49,7 +25,7 @@ describe('ActionNamespace', () => {
 
     expect(Namespace.getNamespace('ns').build())
       .to.deep.eql({
-        test: 'MyApp:ns:test'
+        test: 'ns:test'
     });
   })
 
@@ -68,12 +44,34 @@ describe('ActionNamespace', () => {
 
     expect(Namespace.build()).to.deep.eql({
       ns: {
-        test: 'MyApp:ns:test'
+        test: 'ns:test'
       },
       otherns: {
-        test: 'MyApp:otherns:test'
+        test: 'otherns:test'
       }
     });
+  })
+
+  it('throws on namespace collisions', () => {
+    Namespace = Namespace.addNamespace(
+      ActionTypes('ns', function() {
+        this.actions('ACTION');
+      })
+    )
+
+    expect(() => {
+      Namespace.addNamespace(
+        ActionTypes('ns', function() {
+          this.actions('OTHER_ACTION')
+        })
+      )
+    }).to.throw(Error);
+  })
+
+  it('throws if trying to access a nonexistant namespace', () => {
+    expect(() => {
+      Namespace.getNamespace('not_there')
+    }).to.throw(Error);
   })
 
   it('can add nested namespaces', () => {
@@ -97,19 +95,34 @@ describe('ActionNamespace', () => {
 
     expect(Namespace.build()).to.deep.eql({
       nsOne: {
-        testOne: 'MyApp:nsOne:testOne',
+        testOne: 'nsOne:testOne',
         moduleOne: {
           testTwo: 'nsOne:moduleOne:testTwo'
         }
       },
 
       nsTwo: {
-        testOne: 'MyApp:nsTwo:testOne',
+        testOne: 'nsTwo:testOne',
         moduleTwo: {
           testTwo: 'nsTwo:moduleTwo:testTwo'
         }
       }
-    })
+    });
+
+    expect(Namespace.getNamespace('nsOne').build()).to.deep.eql({
+      testOne: 'nsOne:testOne',
+      moduleOne: {
+        testTwo: 'nsOne:moduleOne:testTwo'
+      }
+    });
+
+    expect(Namespace.getNamespace('nsTwo').build()).to.deep.eql({
+      testOne: 'nsTwo:testOne',
+      moduleTwo: {
+        testTwo: 'nsTwo:moduleTwo:testTwo'
+      }
+    });
+    
   })
 
 })

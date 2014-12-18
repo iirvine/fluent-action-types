@@ -8,8 +8,8 @@ describe('ActionTypes', () => {
 
     expect(MyActionTypes.build())
       .to.deep.equal({
-        one: 'test:one',
-        two: 'test:two'
+        one: 'one',
+        two: 'two'
     });
   })
 
@@ -23,21 +23,12 @@ describe('ActionTypes', () => {
 
     expect(MyActionTypes.build())
       .to.deep.equal({
-        ACTION: 'test:ACTION',
+        ACTION: 'ACTION',
         ns: {
-          OTHER_ACTION: 'test:ns:OTHER_ACTION'
+          OTHER_ACTION: 'ns:OTHER_ACTION'
         }
       });
     });
-
-  it('throws on action name collisions', () => {
-    expect(function() {
-      ActionTypes('test', function() {
-        this.actions('one');
-        this.actions('one');
-      })
-    }).to.throw(Error);
-  });
 
   it('throws on namespace collisions', () => {
     expect(function() {
