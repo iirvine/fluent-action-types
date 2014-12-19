@@ -70,10 +70,10 @@ class ActionNamespace extends Namespace {
   }
 
   build() {
-    return mergeAll(
+    return assign(
       buildActions(this.get('actions'), this.prefix),
       buildNamespaces(this.get('namespaces'))
-    )
+    );
   }
 }
 
@@ -97,14 +97,6 @@ function buildNamespaces(namespaces) {
     reduction[namespace.get('name')] = namespace.build();
     return reduction;
   }, {})
-}
-
-function mergeAll(...objects) {
-  var result = {};
-  for (var obj of objects) {
-    result = assign(result, obj);
-  }
-  return result;
 }
 
 module.exports = ActionNamespace
