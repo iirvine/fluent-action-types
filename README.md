@@ -34,9 +34,7 @@ You can then serialize this object with `UserActionTypes.build()`. This produces
 }
 ```
 
-...which you can then use with your favorite flux library's stores and action creators - say, perhaps, [fluent-flux](https://github.com/iirvine/fluent-flux)?
-
-Namespaces are immutable and can be safely merged. When a child namespace is added to a parent, the `build()` operation will ensure action type strings are unique.
+ActionNamespaces are immutable and can be safely merged. When a child namespace is added to a parent, the `build()` operation will ensure action type strings are unique.
 
 ```js
 var {ActionNamespace} = require('fluent-action-types');
@@ -62,6 +60,7 @@ Produces:
 }
 ```
 
+...which you can then use with your favorite flux library's stores and action creators to represent your different action types - say, perhaps, [fluent-flux](https://github.com/iirvine/fluent-flux)?
 
 ##Why?
 
