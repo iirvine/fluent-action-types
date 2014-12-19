@@ -19,10 +19,10 @@ var UserActionTypes = ActionTypes('users', function() {
 			'RECEIVE_ALL_USERS'
 		);
 	});
-}).build();
+});
 ```
 
-This produces an object that looks like this:
+You can then serialize this object with `UserActionTypes.build()`. This produces an object that looks like this:
 ```js
 {
 	FETCH_USER: 'FETCH_USER',
