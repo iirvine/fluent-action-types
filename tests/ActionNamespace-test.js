@@ -1,5 +1,5 @@
-var ActionNamespace = require('../lib/ActionNamespace');
-var ActionTypes = require('../index');
+var ActionNamespace = require('../src/ActionNamespace');
+var ActionTypes = require('../src/index');
 
 describe('ActionNamespace', () => {
   var Namespace;

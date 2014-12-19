@@ -34,7 +34,7 @@ You can then serialize this object with `UserActionTypes.build()`. This produces
 }
 ```
 
-ActionNamespaces are immutable and can be safely merged. When a child namespace is added to a parent, the `build()` operation will ensure action type strings are unique.
+ActionNamespaces are immutable and can be safely merged. When a child namespace is added to a parent, the `build()` operation will ensure action type strings are unique across the top level namespace.
 
 ```js
 var {ActionNamespace} = require('fluent-action-types');

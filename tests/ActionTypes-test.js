@@ -1,4 +1,4 @@
-var ActionTypes = require('../index');
+var ActionTypes = require('../src/index');
 
 describe('ActionTypes', () => {
   it('builds simple objects', () => {
